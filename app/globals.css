@@ -3,24 +3,25 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Cool editorial light theme — soft paper, ink, electric indigo accent */
-  --background: #f1f0ec;
-  --surface: #f9f8f5;
-  --foreground: #14141a;
-  --muted: #63636d;
-  --border: #dcdad3;
-  --accent: #3a37e8;
-  --accent-foreground: #f9f8f5;
+  /* Light — inverted counterpart of the black/red scheme */
+  --background: #ffffff;
+  --surface: #f4f4f4;
+  --foreground: #0a0a0a;
+  --muted: #6a6a6a;
+  --border: #e4e4e4;
+  --accent: #e60000;
+  --accent-foreground: #ffffff;
 }
 
 .dark {
-  --background: #0a0a0d;
-  --surface: #131318;
-  --foreground: #ececef;
-  --muted: #85858f;
-  --border: #222229;
-  --accent: #8785ff;
-  --accent-foreground: #0a0a0d;
+  /* project://cult — pure black, vivid red, white */
+  --background: #000000;
+  --surface: #0c0c0c;
+  --foreground: #ffffff;
+  --muted: #8f8f8f;
+  --border: #242424;
+  --accent: #ff0000;
+  --accent-foreground: #000000;
 }
 
 @theme inline {
