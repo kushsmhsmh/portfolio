@@ -1,9 +1,12 @@
+import type { DomainKey } from "./portfolio";
+
 export type ExperienceEntry = {
   role: string;
   org: string;
   start: string;
   end: string;
   bullets: string[];
+  domain: DomainKey;
 };
 
 export const experience: ExperienceEntry[] = [
@@ -18,6 +21,7 @@ export const experience: ExperienceEntry[] = [
       "Reduced alpha-research time by 96% by automating BRAIN API workflows with Python and Ollama.",
       "Achieved a 3.54 Sharpe ratio with 21.42% returns and 2% drawdown through a proprietary alpha for China's equity market.",
     ],
+    domain: "quant",
   },
   {
     role: "Intern",
@@ -29,6 +33,7 @@ export const experience: ExperienceEntry[] = [
       "Wrote zero-cost PPP rollout go-to-market reports for securing a contract with the Ministry of Road Transport and Highways.",
       "Developed ML-based face and voice authentication for 1.1 million NSDL Jiffy users, replacing Aadhaar OTP verification.",
     ],
+    domain: "ml",
   },
   {
     role: "President",
@@ -39,6 +44,7 @@ export const experience: ExperienceEntry[] = [
       "Founded the lab's AI/ML and XR research vertical, defining its technical roadmap and scaling the team from the ground up.",
       "Led computer-vision and 3D Gaussian Splatting research, directing project scope and mentoring associates.",
     ],
+    domain: "ml",
   },
   {
     role: "Teaching Assistant",
@@ -49,6 +55,7 @@ export const experience: ExperienceEntry[] = [
       "Organized a DAAD information session with Indian diplomats from Germany.",
       "Managed applications and documentation for international scholarships for five students pursuing overseas programmes.",
     ],
+    domain: "people",
   },
   {
     role: "Founder & President",
@@ -59,6 +66,7 @@ export const experience: ExperienceEntry[] = [
       "Organized a two-day, three-stage tournament with 50+ registrations and INR 55K+ in cash sponsorship.",
       "Hosted 10+ open sessions reaching 500+ participants and managed INR 30K+ in inventory.",
     ],
+    domain: "people",
   },
 ];
 

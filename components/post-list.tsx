@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Reveal } from "@/components/reveal";
+import { Lift } from "@/components/motion-primitives";
 import type { PostMeta } from "@/lib/posts";
 
 function formatDate(date: string) {
@@ -19,10 +19,10 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
   return (
     <div className="flex flex-col">
       {posts.map((post, i) => (
-        <Reveal key={post.slug} delay={i * 0.05}>
+        <Lift key={post.slug} delay={i * 0.05}>
           <Link
             href={`/blog/${post.slug}`}
-            className="group flex flex-col gap-2 border-t border-border py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+            className="group flex flex-col gap-2 border-t border-border py-6 transition-colors hover:border-accent/50 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
           >
             <div>
               <h3 className="text-lg font-semibold tracking-tight group-hover:text-accent">
@@ -34,7 +34,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
               {formatDate(post.date)}
             </p>
           </Link>
-        </Reveal>
+        </Lift>
       ))}
     </div>
   );

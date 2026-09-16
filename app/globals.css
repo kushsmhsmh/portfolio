@@ -3,28 +3,49 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafaf9;
-  --foreground: #111110;
-  --muted: #6b6b68;
-  --border: #e3e2df;
-  --accent: #cdff3d;
-  --accent-foreground: #10130a;
+  --background: #f7f6f3;
+  --surface: #ffffff;
+  --foreground: #14140f;
+  --muted: #6a6a63;
+  --border: #e4e2dc;
+
+  /* Diversified palette — one hue per "asset class" / domain.
+     Diversity of accents = the theme. */
+  --quant: #6d8a1f;
+  --ml: #6d4bd8;
+  --systems: #b8791b;
+  --people: #1a83a6;
+
+  --accent: var(--quant);
+  --accent-foreground: #ffffff;
 }
 
 .dark {
-  --background: #0a0a09;
-  --foreground: #f3f3f1;
-  --muted: #9a9a96;
-  --border: #232320;
-  --accent: #cdff3d;
-  --accent-foreground: #10130a;
+  --background: #08080a;
+  --surface: #101014;
+  --foreground: #f2f1ee;
+  --muted: #8f8f8a;
+  --border: #1f1f24;
+
+  --quant: #c2f04a;
+  --ml: #b7a3ff;
+  --systems: #ffbb54;
+  --people: #55d4f5;
+
+  --accent: var(--quant);
+  --accent-foreground: #0c1004;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-quant: var(--quant);
+  --color-ml: var(--ml);
+  --color-systems: var(--systems);
+  --color-people: var(--people);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
@@ -37,6 +58,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -49,13 +71,34 @@ body {
   color: var(--accent-foreground);
 }
 
+/* Mask-reveal primitive for text lines */
+.reveal-mask {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Fine grid texture — subtle "ledger" feel */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+}
+
+.marquee {
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  .marquee { animation: none; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

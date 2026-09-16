@@ -1,3 +1,5 @@
+import type { DomainKey } from "./portfolio";
+
 export type Project = {
   slug: string;
   title: string;
@@ -5,6 +7,7 @@ export type Project = {
   description: string[];
   href?: string;
   tags: string[];
+  domain: DomainKey;
 };
 
 export const projects: Project[] = [
@@ -19,6 +22,7 @@ export const projects: Project[] = [
     ],
     href: "https://github.com/team-anant/stratos",
     tags: ["Systems", "Actor model", "Flight software"],
+    domain: "systems",
   },
   {
     slug: "transformer-lm-lab",
@@ -31,6 +35,7 @@ export const projects: Project[] = [
     ],
     href: "https://github.com/kushsmhsmh/transformer-lm-lab",
     tags: ["ML research", "Transformers", "PyTorch"],
+    domain: "ml",
   },
   {
     slug: "single-image-3d-reconstruction",
@@ -43,5 +48,6 @@ export const projects: Project[] = [
     ],
     href: "https://github.com/kushsmhsmh/Neurangelo",
     tags: ["Computer vision", "3D", "Open3D"],
+    domain: "ml",
   },
 ];

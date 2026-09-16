@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Reveal } from "@/components/reveal";
+import { Lift } from "@/components/motion-primitives";
 import { ProjectCard } from "@/components/project-card";
 import { projects } from "@/content/projects";
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-      <Reveal>
+      <Lift>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
           Projects
         </h1>
@@ -19,7 +19,7 @@ export default function ProjectsPage() {
           A selection of research and engineering work &mdash; from flight
           software to language model internals to computer vision.
         </p>
-      </Reveal>
+      </Lift>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, i) => (
           <ProjectCard key={project.slug} project={project} index={i} />

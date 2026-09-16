@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
-import { Reveal } from "@/components/reveal";
+import { Lift } from "@/components/motion-primitives";
 import { mdxComponents } from "@/components/mdx-components";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 
@@ -45,7 +45,7 @@ export default async function BlogPostPage({
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
-      <Reveal>
+      <Lift>
         <Link href="/blog" className="text-sm text-muted hover:text-accent">
           &larr; All posts
         </Link>
@@ -53,8 +53,8 @@ export default async function BlogPostPage({
           {post.title}
         </h1>
         <p className="mt-4 font-mono text-sm text-muted">{formatDate(post.date)}</p>
-      </Reveal>
-      <Reveal delay={0.1} className="mt-10">
+      </Lift>
+      <Lift delay={0.1} className="mt-10">
         <MDXRemote
           source={post.content}
           components={mdxComponents}
@@ -69,7 +69,7 @@ export default async function BlogPostPage({
             },
           }}
         />
-      </Reveal>
+      </Lift>
     </article>
   );
 }
