@@ -6,33 +6,31 @@ function formatDate(date: string) {
   if (!date) return "";
   return new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 }
 
 export function PostList({ posts }: { posts: PostMeta[] }) {
   if (posts.length === 0) {
-    return <p className="text-muted">No posts yet &mdash; check back soon.</p>;
+    return <p className="text-muted">No posts yet — check back soon.</p>;
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="border-t border-border">
       {posts.map((post, i) => (
         <Lift key={post.slug} delay={i * 0.05}>
           <Link
             href={`/blog/${post.slug}`}
-            className="group flex flex-col gap-2 border-t border-border py-6 transition-colors hover:border-accent/50 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+            className="group grid gap-2 border-b border-border py-7 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
           >
             <div>
-              <h3 className="text-lg font-semibold tracking-tight group-hover:text-accent">
+              <h3 className="display text-2xl font-medium transition-colors group-hover:text-accent sm:text-3xl">
                 {post.title}
               </h3>
-              <p className="mt-1 text-muted">{post.summary}</p>
+              <p className="mt-2 max-w-xl text-muted">{post.summary}</p>
             </div>
-            <p className="shrink-0 font-mono text-sm text-muted">
-              {formatDate(post.date)}
-            </p>
+            <p className="font-mono text-sm text-muted">{formatDate(post.date)}</p>
           </Link>
         </Lift>
       ))}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Lift } from "@/components/motion-primitives";
-import { ProjectCard } from "@/components/project-card";
+import { WorkIndex } from "@/components/work-index";
 import { projects } from "@/content/projects";
 
 export const metadata: Metadata = {
@@ -10,20 +10,17 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+    <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <Lift>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Projects
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted">
-          A selection of research and engineering work &mdash; from flight
-          software to language model internals to computer vision.
+        <p className="label">[ Index ]</p>
+        <h1 className="display mt-6 text-5xl font-medium sm:text-7xl">Projects</h1>
+        <p className="mt-6 max-w-xl text-lg text-muted">
+          Research and engineering work — from flight software to language-model
+          internals to computer vision.
         </p>
       </Lift>
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
-        ))}
+      <div className="mt-16">
+        <WorkIndex projects={projects} />
       </div>
     </section>
   );

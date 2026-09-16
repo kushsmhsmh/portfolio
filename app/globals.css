@@ -3,37 +3,24 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f7f6f3;
-  --surface: #ffffff;
-  --foreground: #14140f;
-  --muted: #6a6a63;
-  --border: #e4e2dc;
-
-  /* Diversified palette — one hue per "asset class" / domain.
-     Diversity of accents = the theme. */
-  --quant: #6d8a1f;
-  --ml: #6d4bd8;
-  --systems: #b8791b;
-  --people: #1a83a6;
-
-  --accent: var(--quant);
-  --accent-foreground: #ffffff;
+  /* Warm editorial light theme — bone paper, ink, one accent */
+  --background: #f0ece1;
+  --surface: #f6f3ea;
+  --foreground: #17140d;
+  --muted: #6b6559;
+  --border: #d9d3c4;
+  --accent: #d1400a;
+  --accent-foreground: #f6f3ea;
 }
 
 .dark {
-  --background: #08080a;
-  --surface: #101014;
-  --foreground: #f2f1ee;
-  --muted: #8f8f8a;
-  --border: #1f1f24;
-
-  --quant: #c2f04a;
-  --ml: #b7a3ff;
-  --systems: #ffbb54;
-  --people: #55d4f5;
-
-  --accent: var(--quant);
-  --accent-foreground: #0c1004;
+  --background: #12100b;
+  --surface: #191710;
+  --foreground: #ece7da;
+  --muted: #8d8677;
+  --border: #2a2619;
+  --accent: #ff5a26;
+  --accent-foreground: #12100b;
 }
 
 @theme inline {
@@ -42,14 +29,11 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-quant: var(--quant);
-  --color-ml: var(--ml);
-  --color-systems: var(--systems);
-  --color-people: var(--people);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
 }
 
 * {
@@ -64,6 +48,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  font-feature-settings: "ss01";
 }
 
 ::selection {
@@ -71,34 +56,52 @@ body {
   color: var(--accent-foreground);
 }
 
-/* Mask-reveal primitive for text lines */
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Editorial display type: tight, optically large serif */
+.display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+/* Mono eyebrow / index label */
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Link underline that draws in on hover */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
 .reveal-mask {
   overflow: hidden;
   display: inline-block;
   vertical-align: top;
 }
 
-/* Fine grid texture — subtle "ledger" feel */
-.grid-texture {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
-}
-
-.marquee {
-  animation: marquee 38s linear infinite;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee { animation: none; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

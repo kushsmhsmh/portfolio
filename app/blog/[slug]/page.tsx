@@ -46,13 +46,16 @@ export default async function BlogPostPage({
   return (
     <article className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       <Lift>
-        <Link href="/blog" className="text-sm text-muted hover:text-accent">
+        <Link
+          href="/blog"
+          className="link-underline text-sm text-muted hover:text-foreground"
+        >
           &larr; All posts
         </Link>
-        <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <p className="label mt-8">{formatDate(post.date)}</p>
+        <h1 className="display mt-4 text-4xl font-medium sm:text-6xl">
           {post.title}
         </h1>
-        <p className="mt-4 font-mono text-sm text-muted">{formatDate(post.date)}</p>
       </Lift>
       <Lift delay={0.1} className="mt-10">
         <MDXRemote

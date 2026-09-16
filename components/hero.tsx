@@ -1,93 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AmbientField } from "@/components/ambient-field";
-import { Magnetic, staggerContainer, riseItem } from "@/components/motion-primitives";
+import Link from "next/link";
 import { site } from "@/content/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
-  const words = site.name.split(" ");
-
   return (
-    <section className="relative isolate overflow-hidden">
-      <AmbientField />
-      <div className="grid-texture absolute inset-0 -z-10" aria-hidden />
+    <section className="mx-auto max-w-6xl px-6 pb-24 pt-20 sm:pt-28">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="label flex items-center gap-3"
+      >
+        <span className="h-px w-8 bg-accent" />
+        {site.role} — {site.location}
+      </motion.div>
 
-      <div className="mx-auto max-w-5xl px-6 pb-20 pt-24 sm:pb-28 sm:pt-32">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5 backdrop-blur"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-            {site.role} &middot; {site.location}
-          </span>
-        </motion.div>
+      <h1 className="display mt-8 text-[clamp(2.75rem,9vw,7.5rem)] font-medium">
+        <span className="reveal-mask">
+          <motion.span
+            initial={{ y: "108%" }}
+            animate={{ y: "0%" }}
+            transition={{ duration: 1, ease: EASE, delay: 0.1 }}
+            className="inline-block"
+          >
+            {site.statementLead}
+          </motion.span>
+        </span>
+        <br />
+        <span className="reveal-mask">
+          <motion.span
+            initial={{ y: "108%" }}
+            animate={{ y: "0%" }}
+            transition={{ duration: 1, ease: EASE, delay: 0.22 }}
+            className="inline-block italic text-accent"
+          >
+            {site.statementTail}
+          </motion.span>
+        </span>
+      </h1>
 
-        <motion.h1
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-          className="text-6xl font-semibold leading-[0.95] tracking-tight sm:text-8xl"
-        >
-          {words.map((w, i) => (
-            <span key={i} className="reveal-mask mr-4">
-              <motion.span variants={riseItem} className="inline-block">
-                {w}
-              </motion.span>
-            </span>
-          ))}
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.35 }}
-          className="mt-8 max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
+        className="mt-12 flex flex-col gap-8 border-t border-border pt-8 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <p className="max-w-md text-lg leading-relaxed text-muted">
           {site.tagline}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.45 }}
-          className="mt-5 max-w-2xl text-lg leading-relaxed text-muted"
-        >
-          {site.thesis}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.55 }}
-          className="mt-10 flex flex-wrap gap-4"
-        >
-          <Magnetic strength={0.4}>
-            <a
-              href="#work"
-              className="inline-flex rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground"
-            >
-              See the book
-            </a>
-          </Magnetic>
-          <Magnetic strength={0.4}>
-            <a
-              href="/blog"
-              className="inline-flex rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-medium backdrop-blur transition-colors hover:border-accent hover:text-accent"
-            >
-              Read the blog
-            </a>
-          </Magnetic>
-        </motion.div>
-      </div>
+        </p>
+        <div className="flex items-center gap-6">
+          <Link
+            href="#work"
+            className="link-underline text-sm font-medium text-foreground"
+          >
+            Selected work
+          </Link>
+          <Link
+            href="/blog"
+            className="link-underline text-sm font-medium text-muted"
+          >
+            Writing
+          </Link>
+        </div>
+      </motion.div>
     </section>
   );
 }

@@ -2,19 +2,19 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="mx-auto flex max-w-5xl flex-col items-start px-6 py-24 sm:py-32">
-      <p className="font-mono text-sm uppercase tracking-[0.2em] text-accent">404</p>
-      <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-        Nothing here.
+    <section className="mx-auto flex max-w-6xl flex-col items-start px-6 py-28 sm:py-40">
+      <p className="label">[ 404 ]</p>
+      <h1 className="display mt-6 text-6xl font-medium sm:text-8xl">
+        Nothing <span className="italic text-accent">here.</span>
       </h1>
-      <p className="mt-4 text-lg text-muted">
+      <p className="mt-6 text-lg text-muted">
         The page you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link
         href="/"
-        className="mt-8 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-transform hover:scale-105"
+        className="link-underline mt-10 text-sm font-medium text-foreground"
       >
-        Back home
+        &larr; Back home
       </Link>
     </section>
   );

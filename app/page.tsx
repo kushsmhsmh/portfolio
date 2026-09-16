@@ -1,10 +1,8 @@
-import Link from "next/link";
 import { Hero } from "@/components/hero";
-import { Lift, MaskReveal } from "@/components/motion-primitives";
-import { StatStrip } from "@/components/stat-strip";
-import { Ticker } from "@/components/ticker";
-import { AllocationBar } from "@/components/allocation-bar";
-import { ProjectCard } from "@/components/project-card";
+import { Lift } from "@/components/motion-primitives";
+import { SectionHeader } from "@/components/section-header";
+import { FocusIndex } from "@/components/focus-index";
+import { WorkIndex } from "@/components/work-index";
 import { ExperienceTimeline } from "@/components/experience-timeline";
 import { ActivitiesList } from "@/components/activities-list";
 import { PostList } from "@/components/post-list";
@@ -13,14 +11,6 @@ import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { getAllPosts } from "@/lib/posts";
 
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
-      {children}
-    </span>
-  );
-}
-
 export default function Home() {
   const posts = getAllPosts().slice(0, 3);
 
@@ -28,135 +18,66 @@ export default function Home() {
     <>
       <Hero />
 
-      <Ticker />
-
-      {/* Track record — the numbers */}
-      <section className="mx-auto max-w-5xl px-6 py-20">
-        <Lift className="mb-8">
-          <SectionLabel>Track record</SectionLabel>
-        </Lift>
-        <StatStrip />
-      </section>
-
-      {/* The thesis, visualized */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div>
-            <Lift className="mb-4">
-              <SectionLabel>The book</SectionLabel>
-            </Lift>
-            <h2 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-              <MaskReveal>Uncorrelated bets,</MaskReveal>
-              <br />
-              <MaskReveal delay={0.08}>one hedged career.</MaskReveal>
-            </h2>
-            <Lift delay={0.15}>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-                No single position dominates. Quant research pays for the risk
-                I take on research bets; people work compounds all of it. Hover
-                the bar to inspect each holding.
-              </p>
-            </Lift>
-          </div>
-          <Lift delay={0.1}>
-            <div className="rounded-3xl border border-border bg-surface/50 p-6 backdrop-blur sm:p-8">
-              <AllocationBar />
-            </div>
+      {/* About */}
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+        <div className="grid gap-8 sm:grid-cols-[3rem_1fr] sm:gap-8">
+          <span className="label pt-2">[ 00 ]</span>
+          <Lift>
+            <p className="display max-w-4xl text-2xl font-medium leading-[1.25] sm:text-4xl">
+              {site.intro}
+            </p>
           </Lift>
         </div>
       </section>
 
-      {/* Intro prose */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <Lift className="mb-2">
-          <SectionLabel>Prospectus</SectionLabel>
-        </Lift>
-        <Lift>
-          <p className="max-w-3xl text-xl leading-relaxed text-foreground/85 sm:text-2xl">
-            {site.intro}
-          </p>
-        </Lift>
+      {/* Focus areas */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <SectionHeader index="01" title="Focus" />
+        <FocusIndex />
       </section>
 
       {/* Experience */}
-      <section id="work" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16">
-        <Lift className="mb-2">
-          <SectionLabel>Positions held</SectionLabel>
-        </Lift>
-        <Lift>
-          <h2 className="mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Experience
-          </h2>
-        </Lift>
+      <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-16">
+        <SectionHeader index="02" title="Experience" />
         <ExperienceTimeline items={experience} />
-        <Lift>
-          <div className="flex flex-col gap-1 border-t border-border py-8 sm:flex-row sm:items-baseline sm:gap-8">
-            <p className="w-[170px] shrink-0 font-mono text-sm text-muted">
-              {education.start} &ndash; {education.end}
-            </p>
-            <p className="text-foreground/85">
-              <span className="font-semibold">{education.degree}</span> &middot;{" "}
-              {education.school} ({education.detail})
-            </p>
+        <div className="grid gap-4 border-b border-border py-8 sm:grid-cols-[3rem_1fr] sm:gap-8 sm:py-10">
+          <span className="label pt-1">{String(experience.length + 1).padStart(2, "0")}</span>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3 className="display text-2xl font-medium sm:text-3xl">
+              {education.degree}
+              <span className="text-muted"> — {education.school}</span>
+            </h3>
+            <span className="font-mono text-sm text-muted">
+              {education.start} &ndash; {education.end} · {education.detail}
+            </span>
           </div>
-        </Lift>
+        </div>
+      </section>
+
+      {/* Selected work */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <SectionHeader
+          index="03"
+          title="Selected work"
+          link={{ href: "/projects", label: "All projects" }}
+        />
+        <WorkIndex projects={projects} />
       </section>
 
       {/* Activities */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <Lift className="mb-2">
-          <SectionLabel>Off-book</SectionLabel>
-        </Lift>
-        <Lift>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Activities &amp; leadership
-          </h2>
-        </Lift>
-        <div className="mt-8">
-          <ActivitiesList items={activities} />
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <Lift className="mb-2">
-          <SectionLabel>Open positions</SectionLabel>
-        </Lift>
-        <Lift>
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Projects
-            </h2>
-            <Link href="/projects" className="text-sm text-muted hover:text-accent">
-              View all
-            </Link>
-          </div>
-        </Lift>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
-        </div>
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <SectionHeader index="04" title="Beyond work" />
+        <ActivitiesList items={activities} />
       </section>
 
       {/* Writing */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <Lift className="mb-2">
-          <SectionLabel>Research notes</SectionLabel>
-        </Lift>
-        <Lift>
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Writing
-            </h2>
-            <Link href="/blog" className="text-sm text-muted hover:text-accent">
-              All posts
-            </Link>
-          </div>
-        </Lift>
-        <div className="mt-4">
-          <PostList posts={posts} />
-        </div>
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <SectionHeader
+          index="05"
+          title="Writing"
+          link={{ href: "/blog", label: "All posts" }}
+        />
+        <PostList posts={posts} />
       </section>
     </>
   );

@@ -8,24 +8,37 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border/60">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          &copy; {new Date().getFullYear()} {site.name}. Built with Next.js.
-        </p>
-        <div className="flex gap-5">
-          {links.map((link) => (
+    <footer className="mt-auto border-t border-border">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="label">[ Get in touch ]</p>
             <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="transition-colors hover:text-accent"
+              href={`mailto:${site.email}`}
+              className="display link-underline mt-4 inline-block text-3xl font-medium sm:text-5xl"
             >
-              {link.label}
+              Let&apos;s talk.
             </a>
-          ))}
+          </div>
+          <div className="flex gap-6">
+            {links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  link.href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
+                className="link-underline text-sm text-muted hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
+        <p className="mt-16 font-mono text-xs text-muted">
+          &copy; {new Date().getFullYear()} {site.name}
+        </p>
       </div>
     </footer>
   );

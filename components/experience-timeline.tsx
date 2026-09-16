@@ -1,45 +1,39 @@
 import { Lift } from "@/components/motion-primitives";
-import { domainColor } from "@/content/portfolio";
+import { domainLabel } from "@/content/portfolio";
 import type { ExperienceEntry } from "@/content/experience";
 
 export function ExperienceTimeline({ items }: { items: ExperienceEntry[] }) {
   return (
-    <div className="flex flex-col">
-      {items.map((item, i) => {
-        const color = domainColor[item.domain];
-        return (
-          <Lift key={item.role + item.org} delay={i * 0.04}>
-            <div className="group relative grid gap-3 border-t border-border py-8 sm:grid-cols-[170px_1fr] sm:gap-8">
-              <div className="flex items-center gap-3">
-                <span
-                  className="h-2.5 w-2.5 shrink-0 rounded-full"
-                  style={{ background: color }}
-                />
-                <p className="font-mono text-sm text-muted">
-                  {item.start} &ndash; {item.end}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight">
-                  {item.role}{" "}
-                  <span className="text-muted">&middot; {item.org}</span>
+    <div className="border-t border-border">
+      {items.map((item, i) => (
+        <Lift key={item.role + item.org} delay={i * 0.04}>
+          <div className="grid gap-4 border-b border-border py-8 sm:grid-cols-[3rem_1fr] sm:gap-8 sm:py-10">
+            <span className="label pt-1">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="display text-2xl font-medium sm:text-3xl">
+                  {item.role}
+                  <span className="text-muted"> — {item.org}</span>
                 </h3>
-                <ul className="mt-3 space-y-2 text-foreground/85">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-3">
-                      <span
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full"
-                        style={{ background: color }}
-                      />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="font-mono text-sm text-muted">
+                  {item.start} &ndash; {item.end}
+                </span>
               </div>
+              <p className="label mt-2 !text-[0.68rem]">
+                {domainLabel[item.domain]}
+              </p>
+              <ul className="mt-4 space-y-2 text-foreground/85">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-3">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    <span className="leading-relaxed">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </Lift>
-        );
-      })}
+          </div>
+        </Lift>
+      ))}
     </div>
   );
 }
