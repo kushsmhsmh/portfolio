@@ -1,5 +1,3 @@
-# kushagra.dev
-
 Personal portfolio and blog, built with Next.js (App Router), Tailwind CSS v4,
 Framer Motion, and MDX.
 
