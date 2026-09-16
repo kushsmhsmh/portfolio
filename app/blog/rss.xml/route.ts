@@ -29,7 +29,7 @@ export async function GET() {
   <channel>
     <title>${site.name}</title>
     <link>${site.url}</link>
-    <description>${site.tagline}</description>
+    <description>${escapeXml(site.name)} — writing</description>
     ${items}
   </channel>
 </rss>`;

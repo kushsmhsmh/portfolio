@@ -25,10 +25,10 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — Portfolio`,
+    default: site.name,
     template: `%s — ${site.shortName}`,
   },
-  description: site.tagline,
+  description: `${site.name} — portfolio and writing.`,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
