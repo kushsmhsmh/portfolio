@@ -9,7 +9,7 @@ export const site = {
   shortName: "Kushagra",
   email: "f20240304@pilani.bits-pilani.ac.in",
   github: "https://github.com/kushsmhsmh",
-  linkedin: "https://www.linkedin.com/in/kushagra-agarwal-aug2006",
+  linkedin: "https://www.linkedin.com/in/kushagragarwal1",
 } as const;
 
 // Links shown in the hero and footer.
