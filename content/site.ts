@@ -1,7 +1,10 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const site = {
-  // Set NEXT_PUBLIC_SITE_URL once this is deployed (e.g. in Vercel project settings)
-  // so metadata, the sitemap, and the RSS feed point at the real domain.
+  // Set NEXT_PUBLIC_SITE_URL at build/deploy time so metadata, the sitemap,
+  // and the RSS feed point at the real domain.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
+  basePath,
   name: "Kushagra Agarwal",
   shortName: "Kushagra",
   email: "f20240304@pilani.bits-pilani.ac.in",
@@ -13,7 +16,7 @@ export const site = {
 export const links = [
   { label: "GitHub", href: site.github, external: true },
   { label: "LinkedIn", href: site.linkedin, external: true },
-  { label: "CV", href: "/cv.pdf", external: true },
+  { label: "CV", href: `${basePath}/cv.pdf`, external: true },
   { label: "Email", href: `mailto:${site.email}`, external: false },
 ] as const;
 

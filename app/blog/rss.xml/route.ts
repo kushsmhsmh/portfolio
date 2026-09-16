@@ -1,6 +1,9 @@
 import { site } from "@/content/site";
 import { getAllPosts } from "@/lib/posts";
 
+// Emit as a static file during `next export`.
+export const dynamic = "force-static";
+
 function escapeXml(value: string) {
   return value
     .replace(/&/g, "&amp;")
