@@ -1,10 +1,4 @@
-import { site } from "@/content/site";
-
-const links = [
-  { label: "Email", href: `mailto:${site.email}` },
-  { label: "GitHub", href: site.github },
-  { label: "LinkedIn", href: site.linkedin },
-];
+import { site, links } from "@/content/site";
 
 export function Footer() {
   return (
@@ -25,10 +19,8 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  link.href.startsWith("http") ? "noopener noreferrer" : undefined
-                }
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="link-underline text-sm text-muted hover:text-foreground"
               >
                 {link.label}

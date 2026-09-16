@@ -22,9 +22,9 @@ export function Hero() {
 
       <h1 className="display mt-8 text-[clamp(3rem,11vw,9rem)] font-medium">
         {words.map((word, i) => (
-          <span key={word + i} className="reveal-mask mr-[0.25em] last:mr-0">
+          <span key={word + i} className="reveal-mask">
             <motion.span
-              initial={{ y: "110%" }}
+              initial={{ y: "135%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 1, ease: EASE, delay: 0.1 + i * 0.12 }}
               className={i === words.length - 1 ? "inline-block italic text-accent" : "inline-block"}

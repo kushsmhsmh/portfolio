@@ -65,7 +65,7 @@ body {
   font-family: var(--font-serif), Georgia, serif;
   font-optical-sizing: auto;
   letter-spacing: -0.02em;
-  line-height: 0.98;
+  line-height: 1.06;
 }
 
 /* Mono eyebrow / index label */
@@ -89,10 +89,15 @@ body {
   background-size: 100% 1px;
 }
 
+/* Clip window for the rise-in reveal. Padding gives descenders and italic
+   overhang room inside the clip box; the matching negative margin keeps the
+   visual layout unchanged. */
 .reveal-mask {
   overflow: hidden;
   display: inline-block;
   vertical-align: top;
+  padding: 0.06em 0.14em 0.22em;
+  margin: -0.06em 0 -0.22em;
 }
 
 @media (prefers-reduced-motion: reduce) {

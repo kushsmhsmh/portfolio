@@ -13,6 +13,7 @@ export const site = {
 export const links = [
   { label: "GitHub", href: site.github, external: true },
   { label: "LinkedIn", href: site.linkedin, external: true },
+  { label: "CV", href: "/cv.pdf", external: true },
   { label: "Email", href: `mailto:${site.email}`, external: false },
 ] as const;
 

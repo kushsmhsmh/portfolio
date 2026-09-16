@@ -18,7 +18,7 @@ export function MaskReveal({
   return (
     <span className="reveal-mask">
       <motion.span
-        initial={{ y: "108%" }}
+        initial={{ y: "135%" }}
         whileInView={{ y: "0%" }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.9, ease: EASE, delay }}
@@ -37,7 +37,7 @@ export const staggerContainer: Variants = {
 };
 
 export const riseItem: Variants = {
-  hidden: { y: "110%" },
+  hidden: { y: "135%" },
   show: { y: "0%", transition: { duration: 0.95, ease: EASE } },
 };
 
